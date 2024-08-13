@@ -1,0 +1,97 @@
+本文件用于讲述项目
+引入外援辅助软件：mysql5.7 以及 Apipost
+引入mysql是为了方便存储数据，而Apipost是作为一个手动的数据传输端使用的
+
+以下是MySQL的连接参数
+sql_config = {
+    host: "localhost",
+    user: "root",
+    password: "12345",
+    port: 3306,
+    database: "mycircle"
+}
+
+内部包含：artical{title varchar(20), author varchar(20), create_time int(11), circle_name varchar(20), context text};
+circle{circle_name varchar(20)};
+messages{name varchar(20), argument varchar(100), circle_name varchar(20), title varchar(20)};
+users{name varchar(20), password int(11)};
+
+这些表内数据均可从项目中手动添加，但是基础表格需要先行建好
+
+接下来是使用方法
+项目中提供了一个dev脚本，在项目终端输入npm run dev 即可启动项目服务器了（zaicizhiqian一定要先启动数据库）
+具体运行结果会在终端同步显示，get请求要到对应的网址，post要用到Apipost与对应网址建立接口链接且只能传对应格式
+
+项目中提供了一个log_in的HTML文件，我真的很想连接上，但是失败了（因为跨域问题无法解决），希望老师行行好，您可以直接点击来看看我的html
+
+项目的功能包含localhost:3080
+下属网址有http://localhost:3080/blog/list
+http://localhost:3080/blog/create_file
+http://localhost:3080/blog/log_in
+http://localhost:3080/blog/new_user
+http://localhost:3080/blog/user_only
+http://localhost:3080/blog/circle_view
+http://localhost:3080/blog/create_circle
+
+
+
+
+
+输入网址即可使用具体功能
+http://localhost:3080/blog/log_in
+为登录，“post”需输入格式为json
+{
+"name": "****",
+"password":****
+}
+
+http://localhost:3080/blog/new_user
+为创建用户，要求同于log_in
+
+http://localhost:3080/blog/user_only
+为用户的个人面板，“get”请求直接对网址后面加入后缀？author = “***”&password = *****
+在不输入后缀或后缀不全将无法查看个人信息
+“post”请求将在个人查询可以出结果的页面上进行，传入格式为
+{
+“title”: "***",
+"circle_name":"*****"
+
+}
+这样就可以看见个人自己的文章内容了
+
+http://localhost:3080/blog/circle_view
+兴趣圈详情查看
+“get”，一就是在网址后面加入？circle_name = “******”（此时为某一特定兴趣圈内全部文章）
+？circle_name = “******”& filename = “****”（此时为此文章的评论）
+“post”，在网址为？circle_name = “******”的链接发送
+{
+“name”: "***",
+""title" : "****",
+"argument" : "*******************************************"
+
+}
+这样就可以对title的文章进行用户名为name的评价，内容为argument
+
+
+http://localhost:3080/blog/create_circle
+为创建兴趣圈，只有post，输入
+{
+“circle_name“ ：“****”
+}
+就可以创建一个自己的兴趣圈，名字重复将无法创建
+
+http://localhost:3080/blog/list
+查询用户活跃度，"get"请求，键入？author = “*******”
+即可查询此人的文章，但是查不了详细的文章内容，也无法兴建文章
+
+http://localhost:3080/blog/create_file
+创建一个文章，“post”请求，需在此网址  发送
+{
+“title”：“*****”，
+“name”：“************”,
+“circle_name”:"********",
+"create_time":***,
+"context":"********************************"
+
+}
+来进行文章的书写
