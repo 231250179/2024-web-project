@@ -61,7 +61,7 @@ const handleBlogRoute = (req , res) => {
         });
 
     }
-    if (method === 'POST' && req.path === '/api/blog/user_only' ) {
+    if (method === 'POST' && req.path === '/blog/user_only' ) {
         const postdata = req.body;
         const title = postdata.title || '';
         const circle = postdata.circle_name || '';
