@@ -1,0 +1,25 @@
+{
+  "name": "lets_start",
+  "version": "1.0.0",
+  "main": "app.js",
+  "bin": {
+    "lets_start": "bin/www.js"
+  },
+  "scripts": {
+    "dev": "nodemon bin/www.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "nodemon": "^3.1.4"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.19.2",
+    "mysql": "^2.18.1",
+    "sql": "^0.78.0",
+    "vite": "^5.4.0"
+  }
+}
