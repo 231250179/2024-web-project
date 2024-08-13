@@ -32,11 +32,11 @@ const getdetail = (id) => {
 }
 
 //创建博客方法
-const createNewBlog = (postData = {} ,name) => {
+const createNewBlog = (postData = {} ) => {
     //
     console.log("postData",postData);
     const title = postData.title;
-    const author = name;
+    const author = postData.name;
     const context = postData.context;
     const circle_name = postData.circle_name;
     const createAt = postData.create_time;
